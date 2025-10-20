@@ -1,13 +1,23 @@
-# Joined Positioning and Control (JPC) Project
+# FactorMPC: A Factor Graph Optimization-based Model Predictive Control Lib
+
+## GTSAMIntegration
+
+All factors are implemented here. Mathematical_Formulation_of_CBFPdFactorCylinder.pdf introduces math derivation of CBF factor.![1760949073518](images/README/Framework.png)
+
+Simulation Version: [IPN_MPC](git@github.com:RoboticsPolyu/IPN_MPC.git)
 
 ### Issues
 
 * When the CPU is too complex and heavy, it may cause ROS lag, causing controller jitter, and even exiting the flight.
 * Tunning Method - Pending
 
-## Overview
+
+
+# Application Demonstration
 
 This project extends the Fast-Drone-250 repository (original project: [ZJU-FAST-Lab/Fast-Drone-250](https://github.com/ZJU-FAST-Lab/Fast-Drone-250.git)) by implementing a real-time Model Predictive Control (MPC) based on Factor Graph Optimization (FGO). The system provides advanced estimation and control capabilities for quadrotor drones with enhanced safety features through Control Barrier Function (CBF) based obstacle avoidance.
+
+![1760949149957](images/README/Experiments.png)
 
 ## Key Features
 
@@ -28,12 +38,12 @@ This project extends the Fast-Drone-250 repository (original project: [ZJU-FAST-
 ### Getting Started
 
 1. **Copy necessary files**:
-   
+
    ```bash
    cp -r src/util/ [your_workspace_path]/src/
    ```
 2. **Build the workspace**:
-   
+
    ```bash
    catkin_make
    source devel/setup.bash
@@ -62,10 +72,9 @@ roslaunch jpcm run_ctrl_mpc_vicon.launch
 roslaunch jpcm run_ctrl_factor_mpc_vicon.launch
 ```
 
-
 ### Takeof Command
 
-```rostopic pub -1  /takeoff\_land quadrotor\_msgs/TakeoffLand "takeoff\_land\_cmd: 1” ```
+``rostopic pub -1  /takeoff\_land quadrotor\_msgs/TakeoffLand "takeoff\_land\_cmd: 1” ``
 
 ### Trajectory Sender Example
 
@@ -90,7 +99,7 @@ roslaunch jpcm run_test.launch
 ### Safety Features
 
 1. **CBF-based Obstacle Avoidance Factors**:
-   
+
    - Formal safety guarantees for collision avoidance
    - Real-time barrier function evaluation
    - Integration with FGO optimization framework
@@ -105,12 +114,12 @@ roslaunch jpcm run_test.launch
 ### Controller Modules
 
 1. **FGO-based MPC with CBF Constraints**:
-   
+
    - Model Predictive Control using Factor Graph Optimization
    - Integrated CBF constraints for obstacle avoidance
    - Real-time optimal trajectory generation with safety guarantees
 2. **Uncertainty-aware MPC**:
-   
+
    - Accounts for estimation uncertainties in control decisions
    - More robust performance under noisy conditions
    - Adaptive control authority based on confidence levels
@@ -125,18 +134,16 @@ roslaunch jpcm run_test.launch
 Modify CBF parameters in `config/obstacle_avoidance.yaml`:
 
 ```yaml
-CBF_alpha:          0.1     
-CBF_beta:           0.1     
-point_obs_sigma:    0.1     
-quad_radius:        0.20      
+CBF_alpha:          0.1   
+CBF_beta:           0.1   
+point_obs_sigma:    0.1   
+quad_radius:        0.20  
 safe_d:             0.05
 ```
-
 
 ## License
 
 This project builds upon the Fast-Drone-250 codebase from ZJU-FAST-Lab. Please refer to the original project for licensing details. Additional implementations are provided under [Your License Choice].
-
 
 ### Special Thanks
 
@@ -172,5 +179,3 @@ If you use this work in your research, please consider citing:
 For questions and support, please open an issue on our GitHub repository or contact the development team.
 
 peiwen1.yang@connect.polyu.hk
-
-
